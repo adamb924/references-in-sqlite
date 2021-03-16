@@ -29,7 +29,7 @@ INSERT INTO refs (osisRef, mtRef) SELECT fromRef,toRef FROM mtRefs WHERE fromRef
 DROP TABLE IF EXISTS lxxRefs;
 CREATE TABLE lxxRefs ( fromRef text, toRef text );
 .separator "\t"
-.import Bible.ORG.txt lxxRefs
+.import Bible.LXX.txt lxxRefs
 
 UPDATE refs SET lxxRef=(SELECT toRef FROM lxxRefs WHERE refs.osisRef=lxxRefs.fromRef);
 INSERT INTO refs (osisRef, lxxRef) SELECT fromRef,toRef FROM lxxRefs WHERE fromRef NOT IN (SELECT osisRef FROM refs);
